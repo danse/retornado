@@ -47,7 +47,6 @@ function tornado(config) {
                 scale.x
                     .domain([d3.min(data, getValue), d3.max(data, getValue)])
                     .range([0, width]);
-                resize = false;
             }
             scale.y
                 .domain([d3.min(data, getDate), d3.max(data, getDate)])
