@@ -23,7 +23,7 @@ library
   exposed-modules:     Retornado
   other-modules:       Paths_retornado
   -- other-extensions:    
-  build-depends:       base >=4.8 && <4.10,
+  build-depends:       base >=4.8,
                        visie,
                        text,
                        containers,
