@@ -23,11 +23,6 @@ import Data.Time.Clock hiding (getCurrentTime)
 dateFormat :: UTCTime -> T.Text
 dateFormat = T.pack . formatTime defaultTimeLocale "%D"
 
-toText :: [Timestamped TextFloat] -> T.Text
-toText =
-  let single (Timestamped (TextFloat te fl) ti) = A.Object (H.fromList [("key", A.String te), ("value", (A.Number . fromFloatDigits) fl), ("date", (A.String . dateFormat) ti)])
-  in TextLazy.toStrict . TextLazy.decodeUtf8 . A.encode . A.toJSON . A.Array . V.fromList . map single . sortOn getTime
-
 oneDay = 60 * 60 * 24 :: NominalDiffTime
 
 transform today days = toText . convertFill today (oneDay * fromIntegral days) . map toTimestampedTextFloat
