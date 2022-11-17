@@ -15,13 +15,8 @@ import qualified Data.Text as T
 import qualified Data.Text.Lazy as TextLazy
 import qualified Data.Text.Lazy.Encoding as TextLazy
 import qualified Data.Vector as V
-import Data.Scientific (fromFloatDigits)
-import Data.Time.Format (formatTime, defaultTimeLocale)
 import Data.List (sortOn)
 import Data.Time.Clock hiding (getCurrentTime)
-
-dateFormat :: UTCTime -> T.Text
-dateFormat = T.pack . formatTime defaultTimeLocale "%D"
 
 oneDay = 60 * 60 * 24 :: NominalDiffTime
 
