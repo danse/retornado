@@ -29,7 +29,6 @@ library
                        containers,
                        aeson,
                        time,
-                       datetime,
                        unordered-containers,
                        vector,
                        scientific

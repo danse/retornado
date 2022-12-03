@@ -6,7 +6,6 @@ import Visie.Data
 import Visie.ToTimeSeries
 import Visie.Index ( IndexType(..) )
 import Paths_retornado (getDataFileName)
-import Data.DateTime (getCurrentTime)
 import Data.Time.Clock (NominalDiffTime)
 
 import qualified Data.Aeson as A
@@ -16,7 +15,7 @@ import qualified Data.Text.Lazy as TextLazy
 import qualified Data.Text.Lazy.Encoding as TextLazy
 import qualified Data.Vector as V
 import Data.List (sortOn)
-import Data.Time.Clock hiding (getCurrentTime)
+import Data.Time.Clock
 
 oneDay = 60 * 60 * 24 :: NominalDiffTime
 
