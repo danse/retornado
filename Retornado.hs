@@ -15,18 +15,8 @@ import qualified Data.Text as T
 import qualified Data.Text.Lazy as TextLazy
 import qualified Data.Text.Lazy.Encoding as TextLazy
 import qualified Data.Vector as V
-import Data.Scientific (fromFloatDigits)
-import Data.Time.Format (formatTime, defaultTimeLocale)
 import Data.List (sortOn)
 import Data.Time.Clock hiding (getCurrentTime)
-
-dateFormat :: UTCTime -> T.Text
-dateFormat = T.pack . formatTime defaultTimeLocale "%D"
-
-toText :: [Timestamped TextFloat] -> T.Text
-toText =
-  let single (Timestamped (TextFloat te fl) ti) = A.Object (H.fromList [("key", A.String te), ("value", (A.Number . fromFloatDigits) fl), ("date", (A.String . dateFormat) ti)])
-  in TextLazy.toStrict . TextLazy.decodeUtf8 . A.encode . A.toJSON . A.Array . V.fromList . map single . sortOn getTime
 
 oneDay = 60 * 60 * 24 :: NominalDiffTime
 
