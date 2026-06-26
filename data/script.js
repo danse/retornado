@@ -18,6 +18,12 @@ var data = [{
   date: 2
 }];
 
+d3
+  .select('.chart')
+  .append('button')
+  .attr('onclick', 'start()')
+  .text('start')
+let start;
 function visie (data) {
   var chart = tornado()
   var converted = data.map(convert).filter(function(x) {
@@ -28,12 +34,14 @@ function visie (data) {
   });
   var aggregated = aggregate(converted);
   var interval = 10000 / data.length;
-  aggregated.forEach(function(data, frame) {
+  let render = function(data, frame) {
     setTimeout(function() {
       d3
         .select('.chart')
         .data([data])
         .call(chart);
     }, frame * interval);
-  });
+  };
+  [aggregated.shift()].forEach(render);
+  start = function(){aggregated.forEach(render);};
 }
