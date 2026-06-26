@@ -19,9 +19,17 @@ import Data.Time.Clock
 
 oneDay = 60 * 60 * 24 :: NominalDiffTime
 
-transform today days = toText . convertFill today (oneDay * fromIntegral days) . map toTimestampedTextFloat
+transform today days =
+  toText
+  . convertFill today (oneDay * fromIntegral days)
+  . map toTimestampedTextFloat
 
-options = defaultOptions { additionalScripts = [ResourceDesc { fetch = "data/tornado.js", serve = "tornado.js" }], d3Version = Version3, indexType = ChartDiv }
+options = defaultOptions {
+  additionalScripts =
+      [ResourceDesc { fetch = "data/tornado.js", serve = "tornado.js" }],
+  d3Version = Version3,
+  indexType = ChartDiv
+  }
 
 retornado days d = do
   today <- getCurrentTime
